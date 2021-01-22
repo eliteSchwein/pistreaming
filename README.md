@@ -1,4 +1,4 @@
-# Pi Video Streaming Demo
+# Pi Video Streaming Demo Pi4 Version
 
 This is a demonstration for low latency streaming of the Pi's camera module to
 any reasonably modern web browser, utilizing Dominic Szablewski's excellent
@@ -11,14 +11,22 @@ and [FFmpeg](http://ffmpeg.org).
 ## Installation
 
 Firstly make sure you've got a functioning Pi camera module (test it with
-`raspistill` to be certain). Then make sure you've got the following packages
-installed:
+`raspistill` to be certain). 
 
-    $ sudo apt-get install ffmpeg git python3-picamera python3-ws4py
+
+Then make sure you've got the following packages installed:
+
+    $ sudo apt-get install git python3-picamera python3-pip
+    $ pip3 install ws4py
+
+Install FFmpeg with Hardware Accleration
+
+    $ wget https://gist.githubusercontent.com/jjangsangy/058456fe2d04e3c5f6107d62b60542e3/raw/f3bdc198ae97dc93c843ff54607cca0235c59437/ffmpeg-rpi-4.sh
+    $ bash ffmpeg-rpi-4.sh
 
 Next, clone this repository:
 
-    $ git clone https://github.com/waveform80/pistreaming.git
+    $ git clone https://github.com/eliteSchwein/pistreaming.git
 
 
 ## Usage
@@ -38,7 +46,7 @@ to the console as it starts up:
     Starting broadcast thread
 
 Now fire up your favourite web-browser and visit the address
-`http://pi-address:8082/` - it should fairly quickly start displaying the feed
+`http://pi-address:8080/` - it should fairly quickly start displaying the feed
 from the camera. You should be able to visit the URL from multiple browsers
 simultaneously (although obviously you'll saturate the Pi's bandwidth sooner or
 later).
