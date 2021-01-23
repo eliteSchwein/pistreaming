@@ -1,0 +1,1 @@
+{"name":"Mainsail","short_name":"Mainsail","theme_color":"#D51F26","icons":[{"src":"./img/icons/icon-196-maskable.png","sizes":"196x196","type":"image/png","purpose":"maskable"},{"src":"./img/icons/icon-512-maskable.png","sizes":"512x512","type":"image/png","purpose":"maskable"}],"start_url":"/","display":"standalone","background_color":"#121212"}
