@@ -1,0 +1,18 @@
+.scalepanel-dashboard label{
+    display:none;
+}
+.tool-input label{
+    display:none;
+}
+.preheat-setting-panel label{
+    display:none;
+}
+.scaleguide:hover {
+    color: #29B6F6;
+    cursor: pointer;
+}
+.neopixel-swatchesonly .v-color-picker__controls{
+    padding: 0;
+    margin: 0;
+    display: none;
+}
