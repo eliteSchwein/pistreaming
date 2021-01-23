@@ -48,7 +48,7 @@ class StreamingHttpHandler(BaseHTTPRequestHandler):
             self.send_header('Location', '/index.html')
             self.end_headers()
             return
-        elif self.path == '/jsmpg.js':
+        elif self.path == '/videojs-http-streaming.js':
             content_type = 'application/javascript'
             content = self.server.jsmpg_content
         elif self.path == '/index.html':
