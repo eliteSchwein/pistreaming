@@ -76,7 +76,7 @@ class StreamingHttpServer(HTTPServer):
                 ('', HTTP_PORT), StreamingHttpHandler)
         with io.open('index.html', 'r') as f:
             self.index_template = f.read()
-        with io.open('jsmpg.js', 'r') as f:
+        with io.open('videojs-http-streaming.js', 'r') as f:
             self.jsmpg_content = f.read()
 
 
