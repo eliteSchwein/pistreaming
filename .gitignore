@@ -1,3 +1,4 @@
 node_modules/
 frontend/.github/
 frontend/.github/ISSUE_TEMPLATE/
+frontend/dist
