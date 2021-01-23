@@ -23,14 +23,11 @@
 		change this internal resolution to whatever the source provides. The size the
 		canvas is displayed on the website is dictated by the CSS style.
 	-->
-	<canvas id="videoCanvas" width="${WIDTH}" height="${HEIGHT}">
-		<p>
-			Please use a browser that supports the Canvas Element, like
-			<a href="http://www.google.com/chrome">Chrome</a>,
-			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
-			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
-		</p>
-	</canvas>
+	<video-js id=vid1 width=600 height=300 class="vjs-default-skin" controls>
+	  <source
+	     src="https://example.com/index.m3u8"
+	     type="application/x-mpegURL">
+	</video-js>
 	<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
 	<script>
 	var player = videojs('vid1');
