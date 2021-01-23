@@ -11,19 +11,10 @@ var config = require('./config.json');
 app.use(cors())
 app.use(bodyParser())
 
-var width= config.width;
-var height= config.height;
-var flip = Flip[config.flip];
-var rotation = Rotation["Rotate"+config.rotation];
-var framerate = config.framerate;
-var bitRate = config.bitrate
-
 const webserverport = config.port;
 
 var stream = "";
 var currentFrame = ""
-var restartCooldown = 0
-var restartTimer = ""
 
 var streamCamera = new StreamCamera({
     width:config.width,
@@ -100,7 +91,7 @@ app.get('/stream', async function (req, res) {
         res.write("\r\n");
         res.write(currentFrame,'binary');
         res.write("\r\n");
-        setTimeout(send_next,framerate)
+        setTimeout(send_next,config.framerate)
     };
     send_next();
 });
