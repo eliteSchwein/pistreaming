@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.d74b632c444f8fde3ff7c58291325cce.js"
+  "/precache-manifest.e84327bf98f1eb32bc1f222b100c4219.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "hsinfopanel"});
