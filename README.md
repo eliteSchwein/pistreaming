@@ -1,11 +1,7 @@
-# Pi Video Streaming Demo Pi4 Version
+# Pi Streaming
 
-This is a demonstration for low latency streaming of the Pi's camera module to
-any reasonably modern web browser, utilizing Dominic Szablewski's excellent
-[JSMPEG project](https://github.com/phoboslab/jsmpeg). Other dependencies are
-the Python [ws4py library](http://ws4py.readthedocs.org/), my [picamera
-library](http://picamera.readthedocs.org/) (specifically version 1.7 or above),
-and [FFmpeg](http://ffmpeg.org).
+This is a high configurable and easy to use PI Cam MJPEG Streamer, with a pretty new Webinterface.
+You can configure it via the Webinterface aswell and it will autorestart!
 
 
 ## Installation
