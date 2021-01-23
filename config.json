@@ -1,9 +1,9 @@
 {
-    "width":1280,
-    "height":720,
-    "flip":"None",
-    "rotation":0,
-    "framerate":30,
-    "bitrate":20000000,
-    "port":8080
+  "width": "1280",
+  "height": "720",
+  "flip": "None",
+  "rotation": 270,
+  "framerate": "30",
+  "bitrate": "20000000",
+  "port": 8080
 }
