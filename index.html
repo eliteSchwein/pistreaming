@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
 	<meta name="viewport" content="width=${WIDTH}, initial-scale=1"/>
 	<title>jsmpeg streaming</title>
 	<style type="text/css">
@@ -30,17 +31,11 @@
 			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
 		</p>
 	</canvas>
-	<script type="text/javascript" src="jsmpg.js"></script>
-	<script type="text/javascript">
-		// Show loading notice
-		var canvas = document.getElementById('videoCanvas');
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle = '${COLOR}';
-		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
-
-		// Setup the WebSocket connection and start the player
-		var client = new WebSocket('ws://' + window.location.hostname + ':${WS_PORT}/');
-		var player = new jsmpeg(client, {canvas:canvas});
-	</script>
+	<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+	<script src="videojs-http-streaming.js"></script>
+	<script>
+	var player = videojs('vid1');
+	player.play();
+</script>
 </body>
 </html>
