@@ -1,29 +1,37 @@
-const { Flip,StreamCamera, Codec } = require("pi-camera-connect");
+const { Flip,StreamCamera, Codec, Rotation } = require("pi-camera-connect");
 const express = require('express');
-var cors = require('cors')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
+var config = require('./config.json');
+
 app.use(cors())
+app.use(bodyParser())
 
-const width= 1280;
-const height= 720;
-const flip = Flip.None;
-const rotation = 0;
-const framerate = 30;
-const bitRate = 20000000
+var width= config.width;
+var height= config.height;
+var flip = Flip[config.flip];
+var rotation = Rotation["Rotate"+config.rotation];
+var framerate = config.framerate;
+var bitRate = config.bitrate
 
-const webserverport = 8080;
+const webserverport = config.port;
 
 var stream = "";
 var currentFrame = ""
+var restartCooldown = 0
+var restartTimer = ""
 
-const streamCamera = new StreamCamera({
-    width:this.width,
-    height:this.height,
-    rotation:this.rotation,
-    flip:this.flip,
-    fps:framerate,
-    bitRate:this.bitRate,
+var streamCamera = new StreamCamera({
+    width:config.width,
+    height:config.height,
+    rotation:Rotation["Rotate"+config.rotation],
+    flip:Flip[config.flip],
+    fps:config.framerate,
+    bitRate:config.bitrate,
     codec:Codec.MJPEG
 });
 
@@ -36,7 +44,7 @@ async function startStream(){
 
 startStream()
 
-stream.on("data", async function(data){
+var frameHandler = stream.on("data", async function(data){
     currentFrame = await streamCamera.takeImage()
 })
 
@@ -47,6 +55,23 @@ app.listen(webserverport, () => {
 app.get('/', function (req, res) {
 	res.type("application/json");
 	res.send('{"status":"ok"}');
+});
+
+app.get('/getconfig', function (req, res) {
+	res.type("application/json");
+	res.send(config);
+});
+
+app.post('/setconfig', function (req, res) {
+    var newConfig = JSON.stringify(req.body,null,2)
+    fs.writeFile('./config.json',newConfig,async function(err){
+        if (err) throw err;
+        console.log('Saved new Config!');
+        console.log("Restart Stream!");
+        await restartStream()
+        res.type("application/json");
+        res.send('{"status":"ok"}');
+    })
 });
 
 app.get('/snapshot', async function (req, res) {
@@ -79,3 +104,25 @@ app.get('/stream', async function (req, res) {
     };
     send_next();
 });
+
+async function restartStream(){
+    var filename = path.resolve("./config.json");
+    delete require.cache[filename];
+    config = require('./config.json');
+    await streamCamera.stopCapture();
+    streamCamera = new StreamCamera({
+        width:config.width,
+        height:config.height,
+        rotation:Rotation["Rotate"+config.rotation],
+        flip:Flip[config.flip],
+        fps:config.framerate,
+        bitRate:config.bitrate,
+        codec:Codec.MJPEG
+    });
+    
+    stream=streamCamera.createStream();
+    frameHandler = stream.on("data", async function(data){
+        currentFrame = await streamCamera.takeImage()
+    })
+    await streamCamera.startCapture();
+}
