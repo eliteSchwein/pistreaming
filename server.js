@@ -43,10 +43,7 @@ app.listen(webserverport, () => {
     console.log(`Started listening on port `+webserverport);
 });
 
-app.get('/', function (req, res) {
-	res.type("application/json");
-	res.send('{"status":"ok"}');
-});
+app.use(express.static('frontend/dist'));
 
 app.get('/getconfig', function (req, res) {
 	res.type("application/json");
