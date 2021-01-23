@@ -28,8 +28,7 @@ Then install all node Modules:
 
 ## Usage
 
-Run the Python server script which should print out a load of stuff
-to the console as it starts up:
+Start the pistreaming server:
 
     $ cd pistreaming
     $ npm i
