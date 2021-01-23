@@ -95,8 +95,8 @@ class BroadcastOutput(object):
             '-s', '%dx%d' % camera.resolution,
             '-r', str(float(camera.framerate)),
             '-i', '-',
-            '-f', 'mpeg1video',
-            '-b', '12M',
+            '-f', 'mpeg2video',
+            '-b', '20M',
             '-'],
             stdin=PIPE, stdout=PIPE, stderr=io.open(os.devnull, 'wb'),
             shell=False, close_fds=True)
