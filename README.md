@@ -31,7 +31,7 @@ Then install all node Modules:
 Start the pistreaming server:
 
     $ cd pistreaming
-    $ npm i
+    $ npm start
 
 Now fire up your favourite web-browser and visit the address
 `http://pi-address:8080/` - you should now see the Demo and Configurator Website, in there you get the direct URLs to the Stream and Snapshots.
