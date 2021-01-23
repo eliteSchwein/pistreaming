@@ -19,7 +19,7 @@ export default {
 		let formData = new FormData();
 		formData.append('file', file);
 
-		axios.post('http://raspberrypi:8080/setconfig',
+		axios.post('/setconfig',
 			state, {
 				headers: { 'Content-Type': 'application/json' }
 			}

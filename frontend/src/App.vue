@@ -96,7 +96,7 @@ export default {
     created () {
         this.$vuetify.theme.dark = true;
         var handler = this;
-        axios.get('http://raspberrypi:8080/getconfig/', {})
+        axios.get('/getconfig/', {})
         .then(function (response) {
             var data = response.data
             handler.$store.state.config=data
