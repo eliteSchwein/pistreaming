@@ -3,16 +3,18 @@ const express = require('express');
 var cors = require('cors')
 const app = express();
 
+const config = require('./config.json');
+
 app.use(cors())
 
-const width= 1280;
-const height= 720;
-const flip = Flip.None;
-const rotation = 0;
-const framerate = 30;
-const bitRate = 20000000
+const width= config.width;
+const height= config.height;
+const flip = Flip[config.flip];
+const rotation = config.rotation;
+const framerate = config.framerate;
+const bitRate = config.bitrate
 
-const webserverport = 8080;
+const webserverport = config.port;
 
 var stream = "";
 var currentFrame = ""
@@ -47,6 +49,11 @@ app.listen(webserverport, () => {
 app.get('/', function (req, res) {
 	res.type("application/json");
 	res.send('{"status":"ok"}');
+});
+
+app.get('/getconfig', function (req, res) {
+	res.type("application/json");
+	res.send(config);
 });
 
 app.get('/snapshot', async function (req, res) {
