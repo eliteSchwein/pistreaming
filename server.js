@@ -1,6 +1,9 @@
 const { Flip,StreamCamera, Codec } = require("pi-camera-connect");
 const express = require('express');
+var cors = require('cors')
 const app = express();
+
+app.use(cors())
 
 const width= 1280;
 const height= 720;
