@@ -9,12 +9,23 @@ You can configure it via the Webinterface aswell and it will autorestart!
 Firstly make sure you've got a functioning Pi camera module (test it with
 `raspistill` to be certain). 
 
+Install Git first
 
-Then make sure you've got the following packages installed:
+    $ sudo apt install git
+
+
+For the ARM V7 Pi's (Pi3 and higher) install Node via:
 
     $ curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
     $ sudo bash nodesource_setup.sh
     $ sudo apt install nodejs
+    
+For the older Pi's use :
+
+    $ wget https://nodejs.org/download/release/v11.15.0/node-v11.15.0-linux-armv6l.tar.gz
+    $ tar -xvf node-v11.15.0-linux-armv6l.tar.gz
+    $ cd node-v11.15.0-linux-armv6l
+    $ sudo cp -R * /usr/local/
 
 Next, clone this repository:
 
