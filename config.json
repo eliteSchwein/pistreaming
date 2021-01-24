@@ -10,6 +10,7 @@
   "brightness":0,
   "saturation":0,
   "iso":0,
+  "exposureCompensation":0,
   "exposureMode":"Auto",
   "awbMode":"Auto",
   "port": 8080

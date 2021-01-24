@@ -1,6 +1,6 @@
 {
-  "name": "hsinfopanel",
-  "version": "0.0.1",
+  "name": "pistreaming-frontend",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "serve": "./node_modules/.bin/vue-cli-service serve",
