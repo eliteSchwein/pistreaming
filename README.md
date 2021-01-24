@@ -34,7 +34,7 @@ Next, clone this repository:
 Then install all node Modules:
 
     $ cd pistreaming
-    $ cd npm i
+    $ npm i
 
 
 ## Usage
