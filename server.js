@@ -51,7 +51,7 @@ app.listen(webserverport, () => {
     console.log(`Started listening on port `+webserverport);
 });
 
-app.use(express.static('frontend/dist'));
+app.use(express.static(__dirname + '/frontend/dist'));
 
 app.get('/getconfig', function (req, res) {
 	res.type("application/json");
@@ -99,6 +99,11 @@ app.get('/stream', async function (req, res) {
         setTimeout(send_next,config.framerate)
     };
     send_next();
+});
+
+app.use(function(req, res, next) {
+    res.status(404);
+    res.redirect("/");
 });
 
 async function restartStream(){
