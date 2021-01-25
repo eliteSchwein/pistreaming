@@ -2,12 +2,9 @@
     <v-card>
         <v-toolbar flat dense>
             <v-toolbar-title>
-                <span class="subheading"><v-icon left>mdi-webcam</v-icon>Stream</span>
+                <span class="subheading">for Auto ISO set 0</span>
             </v-toolbar-title>
         </v-toolbar>
-        <v-card-text class="px-0 py-0 content">
-            <img src="http://raspberrypi:8080/stream" width="100%">
-        </v-card-text>
     </v-card>
 </template>
 
@@ -16,6 +13,13 @@
         components: {
         },
         computed: {
+            
+        },
+        methods:{
+           
+        },
+        created() {
+           
         },
     }
 </script>

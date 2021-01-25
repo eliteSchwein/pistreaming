@@ -37,18 +37,18 @@
         computed: {
             rotation: {
                 get() {
-                    return this.$store.state.config.rotation;
+                    return this.$store.state.config.data.rotation;
                 },
                 set(newRotation) {
-                    return this.$store.dispatch('config/setSettings', { rotation: newRotation});
+                    return this.$store.dispatch('config/setSettings', { data: { rotation: newRotation }});
                 }
             },
             flip: {
                 get() {
-                    return this.$store.state.config.flip;
+                    return this.$store.state.config.data.flip;
                 },
                 set(newFlip) {
-                    return this.$store.dispatch('config/setSettings', { flip: newFlip});
+                    return this.$store.dispatch('config/setSettings', { data:{ flip: newFlip }});
                 }
             },
         },

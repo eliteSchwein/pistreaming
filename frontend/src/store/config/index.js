@@ -4,13 +4,28 @@ import getters from './getters'
 
 export function getDefaultState() {
 	return {
-		"width":0,
-        "height":0,
-        "flip":"",
-        "rotation":0,
-        "framerate":0,
-        "bitrate":0,
-        "port":0
+		"colorcorrectionvalid":true,
+		"lightcorrectionvalid":true,
+		"qualityvalid":true,
+		"modesvalid":true,
+		"resolutionvalid":true,
+		data: {
+			"width": 1280,
+			"height": 720,
+			"flip": "None",
+			"rotation": 270,
+			"framerate": 30,
+			"bitrate": 20000000,
+			"sharpness": 0,
+			"contrast": 0,
+			"brightness":0,
+			"saturation":0,
+			"iso":0,
+			"exposureCompensation":0,
+			"exposureMode":"Auto",
+			"awbMode":"Auto",
+			"port": 8080
+		}
 	}
 }
 

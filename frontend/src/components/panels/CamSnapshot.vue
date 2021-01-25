@@ -20,7 +20,7 @@
         },
         data:function(){
             return{
-                webcamimg:"/snapshot"
+                webcamimg:"http://raspberrypi:8080/snapshot"
             }
         },
         computed: {

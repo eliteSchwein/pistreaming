@@ -96,10 +96,10 @@ export default {
     created () {
         this.$vuetify.theme.dark = true;
         var handler = this;
-        axios.get('/getconfig/', {})
+        axios.get('http://raspberrypi:8080/getconfig/', {})
         .then(function (response) {
             var data = response.data
-            handler.$store.state.config=data
+            handler.$store.state.config.data=data
         })
         .catch(function (error) {
             console.log(error);

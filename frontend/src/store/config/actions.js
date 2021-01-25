@@ -14,13 +14,14 @@ export default {
 	},
 
 	upload({ state }) {
-		let file = new File([JSON.stringify({ state })], 'config.json');
+		var data = state.data
+		let file = new File([JSON.stringify({ data })], 'config.json');
 
 		let formData = new FormData();
 		formData.append('file', file);
 
-		axios.post('/setconfig',
-			state, {
+		axios.post('http://raspberrypi:8080/setconfig',
+			data, {
 				headers: { 'Content-Type': 'application/json' }
 			}
 		).then(() => {

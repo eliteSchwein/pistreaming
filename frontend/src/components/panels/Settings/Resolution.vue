@@ -6,20 +6,34 @@
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
-            <v-row class="px-4">
-                <v-col>
-                    <v-text-field
-                        v-model="width"
-                        label="Width"
-                    ></v-text-field>
-                </v-col>
-                <v-col>
-                    <v-text-field
-                        v-model="height"
-                        label="Height"
-                    ></v-text-field>
-                </v-col>
-            </v-row>
+            <v-form v-model="valid">
+                <v-row class="px-4">
+                    <v-col>
+                        <v-text-field
+                            v-model="width"
+                            label="Width"
+                            :rules="widthRules"
+                            type="number"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col>
+                        <v-text-field
+                            v-model="height"
+                            label="Height"
+                            :rules="heightRules"
+                            type="number"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col style="max-width:80px">
+                        <v-text-field
+                            v-model="framerate"
+                            label="Framerate"
+                            :rules="framerateRules"
+                            type="number"
+                        ></v-text-field>
+                    </v-col>
+                </v-row>
+            </v-form>
         </v-card-text>
     </v-card>
 </template>
@@ -28,22 +42,56 @@
     export default {
         components: {
         },
+        data() {
+            return {
+                framerateRules: [ 
+                    v => !!v || "This field is required",
+                    v => ( v && v >= 1 ) || "Min is 1" ,
+                    v => ( v && v <= 60 ) || "Max is 60",
+                ],
+                heightRules: [ 
+                    v => !!v || "This field is required",
+                    v => ( v && v >= 1 ) || "Min is 1" ,
+                    v => ( v && v <= 1920 ) || "Max is 1920",
+                ],
+                widthRules: [ 
+                    v => !!v || "This field is required",
+                    v => ( v && v >= 1 ) || "Min is 1" ,
+                    v => ( v && v <= 1920 ) || "Max is 1920",
+                ],
+            }
+        },
         computed: {
+            valid: {
+                get() {
+                    return this.$store.state.config.resolutionvalid;
+                },
+                set(newValid) {
+                    return this.$store.dispatch('config/setSettings', {resolutionvalid: newValid });
+                }
+            },
             width: {
                 get() {
-                    return this.$store.state.config.width;
+                    return this.$store.state.config.data.width;
                 },
                 set(newWidth) {
-                    return this.$store.dispatch('config/setSettings', { width: newWidth});
+                    return this.$store.dispatch('config/setSettings', { data: { width: newWidth}});
                 }
             },
             height: {
                 get() {
-                    return this.$store.state.config.height;
+                    return this.$store.state.config.data.height;
                 },
                 set(newHeight) {
-                    console.log(newHeight)
-                    return this.$store.dispatch('config/setSettings', { height: newHeight});
+                    return this.$store.dispatch('config/setSettings', { data: { height: newHeight}});
+                }
+            },
+            framerate: {
+                get() {
+                    return this.$store.state.config.data.framerate;
+                },
+                set(newFramerate) {
+                    return this.$store.dispatch('config/setSettings', {data: { framerate: newFramerate}});
                 }
             },
         },

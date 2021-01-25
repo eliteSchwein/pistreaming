@@ -2,7 +2,7 @@
     <v-card>
         <v-toolbar flat dense>
             <v-toolbar-title>
-                <span class="subheading"><v-icon left>mdi-image</v-icon>Quality</span>
+                <span class="subheading"><v-icon left>mdi-invert-colors</v-icon>Light Correction</span>
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
@@ -10,17 +10,17 @@
                 <v-row class="px-4">
                     <v-col>
                         <v-text-field
-                            v-model="bitrate"
-                            label="Bitrate"
-                            :rules="bitrateRules"
+                            v-model="iso"
+                            label="ISO"
+                            :rules="isoRules"
                             type="number"
                         ></v-text-field>
                     </v-col>
                     <v-col>
                         <v-text-field
-                            v-model="sharpness"
-                            label="Sharpness"
-                            :rules="sharpnessRules"
+                            v-model="brightness"
+                            label="Brightness"
+                            :rules="brightnessRules"
                             type="number"
                         ></v-text-field>
                     </v-col>
@@ -36,41 +36,41 @@
         },
         data() {
             return {
-                sharpnessRules: [ 
+                isoRules: [ 
                     v => !!v || "This field is required",
-                    v => ( v && v >= -100 ) || "Min is -100" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
+                    v => ( v  && (v == 0 || v >= 100) ) || "Min is 100 or 0",
+                    v => ( v && v <= 800 ) || "Max is 800",
                 ],
-                bitrateRules: [ 
+                brightnessRules: [ 
                     v => !!v || "This field is required",
                     v => ( v && v >= 0 ) || "Min is 0" ,
-                    v => ( v && v <= 25000000 ) || "Max is 25000000",
+                    v => ( v && v <= 100 ) || "Max is 100",
                 ],
             }
         },
         computed: {
             valid: {
                 get() {
-                    return this.$store.state.config.qualityvalid;
+                    return this.$store.state.config.lightcorrectionvalid;
                 },
                 set(newValid) {
-                    return this.$store.dispatch('config/setSettings', {qualityvalid: newValid });
+                    return this.$store.dispatch('config/setSettings', {lightcorrectionvalid: newValid });
                 }
             },
-            bitrate: {
+            iso: {
                 get() {
-                    return this.$store.state.config.data.bitrate;
+                    return this.$store.state.config.data.iso;
                 },
-                set(newBitrate) {
-                    return this.$store.dispatch('config/setSettings', { data: { bitrate: newBitrate}});
+                set(newISO) {
+                    return this.$store.dispatch('config/setSettings', { data: { iso: newISO }});
                 }
             },
-            sharpness: {
+            brightness: {
                 get() {
-                    return this.$store.state.config.data.sharpness;
+                    return this.$store.state.config.data.brightness;
                 },
-                set(newSharpness) {
-                    return this.$store.dispatch('config/setSettings', {data: { sharpness: newSharpness}});
+                set(newBrightness) {
+                    return this.$store.dispatch('config/setSettings', { data: { brightness: newBrightness }});
                 }
             },
         },
