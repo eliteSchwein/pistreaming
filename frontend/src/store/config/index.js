@@ -11,6 +11,7 @@ export function getDefaultState() {
 		"modesvalid":true,
 		"resolutionvalid":true,
 		data: {
+			"readonly":false,
 			"width": 1280,
 			"height": 720,
 			"flip": "None",
