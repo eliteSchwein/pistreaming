@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.e84327bf98f1eb32bc1f222b100c4219.js"
+  "/precache-manifest.a06329193c42e75187596abc66395eb6.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "hsinfopanel"});
+workbox.core.setCacheNameDetails({prefix: "pistreaming-frontend"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
