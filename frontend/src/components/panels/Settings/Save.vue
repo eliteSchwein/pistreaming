@@ -11,9 +11,11 @@
                 get(){
                     var valid = true;
                     for(var validationcheck in this.$store.state.config){
-                        if(this.$store.state.config[validationcheck]==false){
-                            valid=false;
-                            break;
+                        if(validationcheck!="ipaddress"){
+                            if(this.$store.state.config[validationcheck]==false){
+                                valid=false;
+                                break;
+                            }
                         }
                     }
                     return valid
@@ -30,8 +32,10 @@
             var handler = this;
             setTimeout(function(){
                 for(var validationcheck in handler.$store.state.config){
-                    if(handler.$store.state.config[validationcheck]==false){
-                        handler.$store.state.config[validationcheck]=true;
+                    if(validationcheck!="ipaddress"){ 
+                        if(handler.$store.state.config[validationcheck]==false){
+                            handler.$store.state.config[validationcheck]=true;
+                        }
                     }
                 }
             },500)
