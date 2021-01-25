@@ -6,7 +6,7 @@
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
-            <img src="/stream" width="100%">
+            <img :src="this.$store.state.config.ipaddress+'/stream'" width="100%">
         </v-card-text>
     </v-card>
 </template>

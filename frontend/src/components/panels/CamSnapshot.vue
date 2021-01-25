@@ -20,7 +20,7 @@
         },
         data:function(){
             return{
-                webcamimg:"/snapshot"
+                webcamimg:this.$store.state.config.ipaddress+"/snapshot"
             }
         },
         computed: {
@@ -35,7 +35,7 @@
             },
             recaptureget: function(){
                 var handler = this
-                axios.get('/snapshot', { responseType: "arraybuffer" })
+                axios.get(this.$store.state.config.ipaddress+'/snapshot', { responseType: "arraybuffer" })
                 .then(function (response) {
                     let base64String = btoa(
                         String.fromCharCode.apply(null, new Uint8Array(response.data))

@@ -1,13 +1,5 @@
 <template>
-    <v-card>
-        <v-toolbar flat dense>
-            <v-toolbar-title>
-                <span class="subheading"><v-icon left>mdi-content-save</v-icon> Save Config</span>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn small color="primary" @click="saveConfig" :disabled="!valid">Save</v-btn>
-        </v-toolbar>
-    </v-card>
+    <v-btn color="primary" @click="saveConfig" :disabled="!valid" width="100%"><v-icon left>mdi-content-save</v-icon> Save Config</v-btn>
 </template>
 
 <script>

@@ -7,22 +7,47 @@
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
             <v-form v-model="valid">
-                <v-row class="px-4">
-                    <v-col>
-                        <v-text-field
-                            v-model="iso"
-                            label="ISO"
-                            :rules="isoRules"
-                            type="number"
-                        ></v-text-field>
+                <v-row class="px-4 py-0">
+                    <v-col class="px-3 py-0">
+                        <v-switch
+                            style="margin-bottom:-5px"
+                            v-model="autoISO"
+                            label="Auto ISO"
+                            dense
+                        ></v-switch>
                     </v-col>
-                    <v-col>
-                        <v-text-field
+                </v-row>
+                <v-row class="px-2 py-0" v-if="!autoISO">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:90px">
+                        ISO
+                    </v-col>
+                    <v-col class="py-0 pr-4">
+                        <v-slider
+                            style="margin-bottom:-15px"
+                            v-model="iso"
+                            max="800"
+                            min="100"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
+                    </v-col>
+                </v-row>
+                <v-row class="px-2 py-0">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:90px">
+                        Brightness
+                    </v-col>
+                    <v-col class="py-0 pr-4">
+                        <v-slider
                             v-model="brightness"
-                            label="Brightness"
-                            :rules="brightnessRules"
-                            type="number"
-                        ></v-text-field>
+                            max="100"
+                            min="0"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
                     </v-col>
                 </v-row>
             </v-form>
@@ -36,16 +61,7 @@
         },
         data() {
             return {
-                isoRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v  && (v == 0 || v >= 100) ) || "Min is 100 or 0",
-                    v => ( v && v <= 800 ) || "Max is 800",
-                ],
-                brightnessRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v && v >= 0 ) || "Min is 0" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
-                ],
+
             }
         },
         computed: {
@@ -55,6 +71,20 @@
                 },
                 set(newValid) {
                     return this.$store.dispatch('config/setSettings', {lightcorrectionvalid: newValid });
+                }
+            },
+            autoISO: {
+                get() {
+                    if(this.$store.state.config.data.iso==0){
+                        return true
+                    }
+                    return false;
+                },
+                set(newAutoIso) {
+                    if(newAutoIso){
+                        return this.$store.dispatch('config/setSettings', { data: { iso: 0 }});
+                    }
+                    return this.$store.dispatch('config/setSettings', { data: { iso: 100 }});
                 }
             },
             iso: {
