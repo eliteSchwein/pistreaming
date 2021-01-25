@@ -58,22 +58,26 @@ app.get('/getconfig', function (req, res) {
 	res.send(config);
 });
 
-app.post('/setconfig', function (req, res) {
-    var newConfig = JSON.stringify(req.body,null,2)
-    fs.writeFile('./config.json',newConfig,async function(err){
-        if (err) throw err;
-        console.log('Saved new Config!');
-        console.log("Restart Stream!");
-        await restartStream()
-        res.type("application/json");
-        res.send('{"status":"ok"}');
-    })
-});
+if(!config.readonly){
+    app.post('/setconfig', function (req, res) {
+        var newConfig = JSON.stringify(req.body,null,2)
+        fs.writeFile('./config.json',newConfig,async function(err){
+            if (err) throw err;
+            console.log('Saved new Config!');
+            console.log("Restart Stream!");
+            await restartStream()
+            res.type("application/json");
+            res.send('{"status":"ok"}');
+        })
+    });
+}
 
 app.get('/snapshot', async function (req, res) {
-    const image = await streamCamera.takeImage()
-	res.type("image/jpeg");
-	res.send(image);
+    res.writeHead(200, {
+        'Content-Type': 'Content-Type: image/jpeg',
+        'Content-Length': currentFrame.length
+    });
+	res.end(currentFrame);
 });
 
 app.get('/stream', async function (req, res) {
