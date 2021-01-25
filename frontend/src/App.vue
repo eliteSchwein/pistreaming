@@ -99,7 +99,7 @@ export default {
         axios.get('/getconfig/', {})
         .then(function (response) {
             var data = response.data
-            handler.$store.state.config=data
+            handler.$store.state.config.data=data
         })
         .catch(function (error) {
             console.log(error);

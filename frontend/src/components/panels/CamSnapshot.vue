@@ -35,7 +35,7 @@
             },
             recaptureget: function(){
                 var handler = this
-                axios.get('http://raspberrypi:8080/snapshot', { responseType: "arraybuffer" })
+                axios.get('/snapshot', { responseType: "arraybuffer" })
                 .then(function (response) {
                     let base64String = btoa(
                         String.fromCharCode.apply(null, new Uint8Array(response.data))

@@ -1,4 +1,4 @@
-const { Flip,StreamCamera, Codec, Rotation } = require("pi-camera-connect");
+const { Flip,StreamCamera, Codec, Rotation, ExposureMode, AwbMode } = require("pi-camera-connect");
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -23,6 +23,14 @@ var streamCamera = new StreamCamera({
     flip:Flip[config.flip],
     fps:config.framerate,
     bitRate:config.bitrate,
+    sharpness:config.sharpness,
+    contrast:config.contrast,
+    brightness:config.brightness,
+    saturation:config.saturation,
+    iso:config.iso,
+    exposureCompensation:config.exposureCompensation,
+    exposureMode:ExposureMode[config.exposureMode],
+    awbMode:AwbMode[config.awbMode],
     codec:Codec.MJPEG
 });
 
@@ -105,6 +113,14 @@ async function restartStream(){
         flip:Flip[config.flip],
         fps:config.framerate,
         bitRate:config.bitrate,
+        sharpness:config.sharpness,
+        contrast:config.contrast,
+        brightness:config.brightness,
+        saturation:config.saturation,
+        iso:config.iso,
+        exposureCompensation:config.exposureCompensation,
+        exposureMode:ExposureMode[config.exposureMode],
+        awbMode:AwbMode[config.awbMode],
         codec:Codec.MJPEG
     });
     
