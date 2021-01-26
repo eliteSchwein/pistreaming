@@ -25,12 +25,15 @@
                         ></v-text-field>
                     </v-col>
                     <v-col style="max-width:80px">
-                        <v-text-field
+                        <v-select
+                            :items="framerateItems"
                             v-model="framerate"
                             label="Framerate"
-                            :rules="framerateRules"
-                            type="number"
-                        ></v-text-field>
+                        ></v-select>
+                    </v-col>
+                </v-row>
+                <v-row class="px-2 py-0">
+                    <v-col class="py-0 pr-4">
                     </v-col>
                 </v-row>
             </v-form>
@@ -44,6 +47,7 @@
         },
         data() {
             return {
+                framerateItems:[15,24,30,60],
                 framerateRules: [ 
                     v => !!v || "This field is required",
                     v => ( v && v >= 1 ) || "Min is 1" ,
@@ -88,7 +92,7 @@
             },
             framerate: {
                 get() {
-                    return this.$store.state.config.data.framerate;
+                    return Number(this.$store.state.config.data.framerate);
                 },
                 set(newFramerate) {
                     return this.$store.dispatch('config/setSettings', {data: { framerate: newFramerate}});

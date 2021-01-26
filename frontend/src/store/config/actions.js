@@ -20,7 +20,7 @@ export default {
 		let formData = new FormData();
 		formData.append('file', file);
 
-		axios.post('/setconfig',
+		axios.post(state.ipaddress+'/setconfig',
 			data, {
 				headers: { 'Content-Type': 'application/json' }
 			}

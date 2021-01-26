@@ -1,6 +1,6 @@
 {
   "name": "pistreaming-frontend",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "serve": "./node_modules/.bin/vue-cli-service serve",

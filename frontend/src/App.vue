@@ -96,7 +96,7 @@ export default {
     created () {
         this.$vuetify.theme.dark = true;
         var handler = this;
-        axios.get('/getconfig/', {})
+        axios.get( handler.$store.state.config.ipaddress+'/getconfig/', {})
         .then(function (response) {
             var data = response.data
             handler.$store.state.config.data=data

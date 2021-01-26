@@ -7,22 +7,33 @@
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
             <v-form v-model="valid">
-                <v-row class="px-4">
-                    <v-col>
-                        <v-text-field
+                <v-row class="px-4 py-0">
+                    <v-col class="px-3 py-2 pb-0">
+                        <v-select
+                            style="margin-bottom:-8px"
+                            item-text="text"
+                            item-value="value"
+                            :items="bitrateItems"
                             v-model="bitrate"
                             label="Bitrate"
-                            :rules="bitrateRules"
-                            type="number"
-                        ></v-text-field>
+                        ></v-select>
                     </v-col>
-                    <v-col>
-                        <v-text-field
+                </v-row>
+                <v-row class="px-2 py-0">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:90px">
+                        Sharpness
+                    </v-col>
+                    <v-col class="py-0 pr-4">
+                        <v-slider
                             v-model="sharpness"
-                            label="Sharpness"
-                            :rules="sharpnessRules"
-                            type="number"
-                        ></v-text-field>
+                            max="100"
+                            min="-100"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
                     </v-col>
                 </v-row>
             </v-form>
@@ -36,10 +47,31 @@
         },
         data() {
             return {
-                sharpnessRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v && v >= -100 ) || "Min is -100" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
+                bitrateItems: [
+                    {
+                        text:"25MBit",
+                        value: 25000000
+                    },
+                    {
+                        text:"20MBit",
+                        value: 20000000
+                    },
+                    {
+                        text:"15MBit",
+                        value: 15000000
+                    },
+                    {
+                        text:"10MBit",
+                        value: 10000000
+                    },
+                    {
+                        text:"5MBit",
+                        value: 5000000
+                    },
+                    {
+                        text:"1MBit",
+                        value: 1000000
+                    }
                 ],
                 bitrateRules: [ 
                     v => !!v || "This field is required",
@@ -59,9 +91,10 @@
             },
             bitrate: {
                 get() {
-                    return this.$store.state.config.data.bitrate;
+                    return Number(this.$store.state.config.data.bitrate);
                 },
                 set(newBitrate) {
+                    console.log(newBitrate)
                     return this.$store.dispatch('config/setSettings', { data: { bitrate: newBitrate}});
                 }
             },

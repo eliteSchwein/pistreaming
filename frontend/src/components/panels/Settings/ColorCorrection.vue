@@ -6,23 +6,40 @@
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
-            <v-form v-model="valid">
-                <v-row class="px-4">
-                    <v-col>
-                        <v-text-field
-                            v-model="contrast"
-                            label="Contrast"
-                            :rules="contrastRules"
-                            type="number"
-                        ></v-text-field>
+            <v-form v-model="valid"> 
+                <v-row class="px-2 py-0 pt-4">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:90px">
+                        Contrast
                     </v-col>
-                    <v-col>
-                        <v-text-field
+                    <v-col class="py-0 pr-4">
+                        <v-slider
+                            style="margin-bottom:-15px"
+                            v-model="contrast"
+                            max="100"
+                            min="-100"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
+                    </v-col>
+                </v-row>
+                <v-row class="px-2 py-0">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:90px">
+                        Saturation
+                    </v-col>
+                    <v-col class="py-0 pr-4">
+                        <v-slider
                             v-model="saturation"
-                            label="Saturation"
-                            :rules="saturationRules"
-                            type="number"
-                        ></v-text-field>
+                            max="100"
+                            min="-100"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
                     </v-col>
                 </v-row>
             </v-form>
@@ -36,16 +53,7 @@
         },
         data() {
             return {
-                contrastRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v && v >= -100 ) || "Min is -100" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
-                ],
-                saturationRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v && v >= -100 ) || "Min is -100" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
-                ],
+                
             }
         },
         computed: {

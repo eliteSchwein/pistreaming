@@ -1,13 +1,5 @@
 <template>
-    <v-card>
-        <v-toolbar flat dense>
-            <v-toolbar-title>
-                <span class="subheading"><v-icon left>mdi-content-save</v-icon> Save Config</span>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn small color="primary" @click="saveConfig" :disabled="!valid">Save</v-btn>
-        </v-toolbar>
-    </v-card>
+    <v-btn color="primary" @click="saveConfig" :disabled="!valid" width="100%"><v-icon left>mdi-content-save</v-icon> Save Config</v-btn>
 </template>
 
 <script>
@@ -19,9 +11,11 @@
                 get(){
                     var valid = true;
                     for(var validationcheck in this.$store.state.config){
-                        if(this.$store.state.config[validationcheck]==false){
-                            valid=false;
-                            break;
+                        if(validationcheck!="ipaddress"){
+                            if(this.$store.state.config[validationcheck]==false){
+                                valid=false;
+                                break;
+                            }
                         }
                     }
                     return valid
@@ -38,8 +32,10 @@
             var handler = this;
             setTimeout(function(){
                 for(var validationcheck in handler.$store.state.config){
-                    if(handler.$store.state.config[validationcheck]==false){
-                        handler.$store.state.config[validationcheck]=true;
+                    if(validationcheck!="ipaddress"){ 
+                        if(handler.$store.state.config[validationcheck]==false){
+                            handler.$store.state.config[validationcheck]=true;
+                        }
                     }
                 }
             },500)

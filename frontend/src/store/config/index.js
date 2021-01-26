@@ -4,12 +4,14 @@ import getters from './getters'
 
 export function getDefaultState() {
 	return {
+		"ipaddress":"",
 		"colorcorrectionvalid":true,
 		"lightcorrectionvalid":true,
 		"qualityvalid":true,
 		"modesvalid":true,
 		"resolutionvalid":true,
 		data: {
+			"readonly":false,
 			"width": 1280,
 			"height": 720,
 			"flip": "None",
