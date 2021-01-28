@@ -11,10 +11,10 @@
   "brightness": 50,
   "saturation": 0,
   "iso": 0,
-  "exposureCompensation": "0",
+  "exposureCompensation": 0,
   "exposureMode": "Auto",
   "awbMode": "Auto",
-  "analogGain":"1.0",
-  "digitalGain":"1.0",
+  "analogGain": 1,
+  "digitalGain": 1,
   "port": 8080
 }
