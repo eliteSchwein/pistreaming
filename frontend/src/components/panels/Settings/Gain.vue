@@ -7,7 +7,17 @@
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
             <v-form v-model="valid"> 
-                <v-row class="px-2 py-0 pt-4">
+                <v-row class="px-4 py-0">
+                    <v-col class="px-3 py-0">
+                        <v-switch
+                            style="margin-bottom:-5px"
+                            v-model="autoGain"
+                            label="Auto Gain"
+                            dense
+                        ></v-switch>
+                    </v-col>
+                </v-row>
+                <v-row class="px-2 py-0" v-if="!autoGain">
                     <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:70px">
                         Digital
                     </v-col>
@@ -26,7 +36,7 @@
                         ></v-slider>
                     </v-col>
                 </v-row>
-                <v-row class="px-2 py-0">
+                <v-row class="px-2 py-0" v-if="!autoGain">
                     <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:70px">
                         Analog
                     </v-col>
@@ -65,6 +75,22 @@
                 },
                 set(newValid) {
                     return this.$store.dispatch('config/setSettings', {colorcorrectionvalid: newValid });
+                }
+            },
+            autoGain: {
+                get() {
+                    if(this.$store.state.config.data.digitalGain==0&&this.$store.state.config.data.analogGain==0){
+                        return true
+                    }
+                    return false;
+                },
+                set(useAuto) {
+                    if(useAuto){
+                        this.$store.dispatch('config/setSettings', { data: { digitalGain: 0 }});
+                        return this.$store.dispatch('config/setSettings', { data: { analogGain: 0 }});
+                    }
+                    this.$store.dispatch('config/setSettings', { data: { digitalGain: 1.0 }});
+                    return this.$store.dispatch('config/setSettings', { data: { analogGain: 1.0 }});
                 }
             },
             digital: {
