@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.e3fe450f03a96447a5089c68d46eff60.js"
+  "/precache-manifest.3d27114f828ecb4205460490d96113bd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pistreaming-frontend"});

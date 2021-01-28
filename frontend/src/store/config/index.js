@@ -26,6 +26,8 @@ export function getDefaultState() {
 			"exposureCompensation":0,
 			"exposureMode":"Auto",
 			"awbMode":"Auto",
+			"analogGain":"1.0",
+			"digitalGain":"1.0",
 			"port": 8080
 		}
 	}

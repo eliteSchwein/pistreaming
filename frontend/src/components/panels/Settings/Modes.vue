@@ -6,49 +6,54 @@
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
-                <v-row class="px-4">
-                    <v-col>
+                <v-row class="px-4 py-0">
+                    <v-col class="px-2 py-0 pt-2">
                         <v-select
+                            style="margin-bottom:-8px"
                             :items="awbModeItems"
                             v-model="awbMode"
                             label="AwbMode"
                         ></v-select>
                     </v-col>
-                    <v-col>
+                    <v-col class="px-2 py-0 pt-2">
                         <v-select
+                            style="margin-bottom:-8px"
                             :items="exModeItems"
                             v-model="exMode"
                             label="ExposureMode"
                         ></v-select>
                     </v-col>
-                    <v-col style="max-width:80px">
-                        <v-form v-model="valid">
-                            <v-text-field
-                                v-model="compensation"
-                                label="Strength"
-                                :rules="compensationRules"
-                                type="number"
-                            ></v-text-field>
-                        </v-form>
+                </v-row>
+                <v-row class="px-2 py-0">
+                    <v-col class="pl-5 px-0 mt-1 py-0" style="max-width:115px">
+                        Exposure Time
+                    </v-col>
+                    <v-col class="py-0 pr-4">
+                        <v-slider
+                            style="margin-bottom:-15px"
+                            v-model="compensation"
+                            max="10"
+                            min="-10"
+                            thumb-color="primary"
+                            track-color="secondary"
+                            color="secondary"
+                            thumb-label
+                            dense
+                        ></v-slider>
                     </v-col>
                 </v-row>
         </v-card-text>
     </v-card>
 </template>
 
-<script>
+<script> 
     export default {
         components: {
         },
         data() {
             return {
-                exModeItems: ['Auto', 'Nightl', 'NightPreview', 'Backlight', 'Spotlight', 'Sports', 'Beach', 'VeryLong', 'FixedFps', 'AntiShake', 'Fireworks'],
-                awbModeItems: ['Auto', 'Sun', 'Cloud', 'Shade', 'Tungsten', 'Fluorescent', 'Incandescent', 'Flash', 'Horizon', 'GreyWorld'],
-                compensationRules: [ 
-                    v => !!v || "This field is required",
-                    v => ( v && v >= 0 ) || "Min is 0" ,
-                    v => ( v && v <= 100 ) || "Max is 100",
-                ],
+                exModeItems: ['Off','Auto', 'Nightl', 'NightPreview', 'Backlight', 'Spotlight', 'Sports', 'Beach', 'VeryLong', 'FixedFps', 'AntiShake', 'Fireworks'],
+                awbModeItems: ['Off','Auto', 'Sun', 'Cloud', 'Shade', 'Tungsten', 'Fluorescent', 'Incandescent', 'Flash', 'Horizon', 'GreyWorld']
             }
         },
         computed: {

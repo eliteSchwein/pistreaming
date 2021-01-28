@@ -4,14 +4,15 @@
             <cam-stream></cam-stream>
         </v-col>
         <v-col class="col-sm-12 col-md-3" v-if="!readonly">
-            <quality-setting class="mb-6"></quality-setting>
-            <colorcorrection-setting class="mb-6"></colorcorrection-setting>
-            <lightcorrection-setting class="mb-6"></lightcorrection-setting>
+            <quality-settings class="mb-6"></quality-settings>
+            <colorcorrection-settings class="mb-6"></colorcorrection-settings>
+            <lightcorrection-settings class="mb-6"></lightcorrection-settings>
         </v-col>
         <v-col class="col-sm-12 col-md-3" v-if="!readonly">
-            <resolution-setting class="mb-6"></resolution-setting>
-            <alignment-setting class="mb-6"></alignment-setting>
-            <modes-setting class="mb-6"></modes-setting>
+            <resolution-settings class="mb-6"></resolution-settings>
+            <alignment-settings class="mb-6"></alignment-settings>
+            <modes-settings class="mb-6"></modes-settings>
+            <gain-settings class="mb-6"></gain-settings>
             <save-settings></save-settings>
         </v-col>
         <v-col class="col-sm-12 col-md-6" v-if="readonly">
