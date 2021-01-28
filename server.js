@@ -31,7 +31,9 @@ var streamCamera = new StreamCamera({
     exposureCompensation:config.exposureCompensation,
     exposureMode:ExposureMode[config.exposureMode],
     awbMode:AwbMode[config.awbMode],
-    codec:Codec.MJPEG
+    codec:Codec.MJPEG,
+    analogGain:config.analogGain,
+    digitalGain:config.digitalGain
 });
 
 stream=streamCamera.createStream();
@@ -100,7 +102,7 @@ app.get('/stream', async function (req, res) {
         res.write("\r\n");
         res.write(currentFrame,'binary');
         res.write("\r\n");
-        setTimeout(send_next,config.framerate)
+        setTimeout(send_next,10)
     };
     send_next();
 });
@@ -130,7 +132,9 @@ async function restartStream(){
         exposureCompensation:config.exposureCompensation,
         exposureMode:ExposureMode[config.exposureMode],
         awbMode:AwbMode[config.awbMode],
-        codec:Codec.MJPEG
+        codec:Codec.MJPEG,
+        analogGain:config.analogGain,
+        digitalGain:config.digitalGain
     });
     
     stream=streamCamera.createStream();
