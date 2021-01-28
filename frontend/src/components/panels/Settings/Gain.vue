@@ -2,7 +2,7 @@
     <v-card>
         <v-toolbar flat dense>
             <v-toolbar-title>
-                <span class="subheading"><v-icon left>mdi-palette</v-icon>Gain Correction</span>
+                <span class="subheading"><v-icon left>mdi-gauge</v-icon>Gain Correction</span>
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text class="px-0 py-0 content">
